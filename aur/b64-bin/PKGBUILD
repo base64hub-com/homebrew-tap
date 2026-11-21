@@ -1,0 +1,21 @@
+# Maintainer: base64hub <hello at base64hub dot com>
+pkgname=b64-bin
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Encode, decode and validate Base64 from the command line"
+arch=('x86_64' 'aarch64')
+url="https://base64hub.com/cli/"
+license=('MIT')
+provides=('b64')
+conflicts=('b64')
+options=('!strip' '!debug')
+source_x86_64=("b64-${pkgver}-x86_64.tar.gz::https://github.com/base64hub-com/base64hub-cli/releases/download/v${pkgver}/b64_linux_amd64.tar.gz")
+source_aarch64=("b64-${pkgver}-aarch64.tar.gz::https://github.com/base64hub-com/base64hub-cli/releases/download/v${pkgver}/b64_linux_arm64.tar.gz")
+sha256sums_x86_64=('a5af8b8b5eca6f8146778dbd72589f15eb7284835f0dee97ada9271c6cfe2a59')
+sha256sums_aarch64=('70900e6cad4b5dfa59a68cf13353a79114d79dd4628651c6a48064a0a3525df8')
+
+package() {
+  install -Dm755 b64 "$pkgdir/usr/bin/b64"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}
